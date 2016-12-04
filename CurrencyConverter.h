@@ -10,7 +10,7 @@
 
 @interface CurrencyConverter : NSObject
 
--(float)convertRUBtoUSD:(float)rublevalue and :(float)course;
+-( NSDecimalNumber * )currencyConverter:( NSDecimalNumber * )baseValue and :( NSDecimalNumber * )course;
 
 @end
 

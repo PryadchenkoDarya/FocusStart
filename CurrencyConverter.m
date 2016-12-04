@@ -14,8 +14,14 @@
 
 @implementation CurrencyConverter
 
--(float)convertRUBtoUSD:(float)rublevalue and:(float)course{
-    return rublevalue/course;
+-( NSDecimalNumber *)currencyConverter:( NSDecimalNumber *)baseValue and:( NSDecimalNumber *)course
+{
+    NSDecimalNumber *result = [ baseValue decimalNumberByMultiplyingBy:course ];
+    //NSRoundingMode roundingMode;
+    //NSDecimalMultiply(result, baseValue, course, roundingMode);
+    //NSDecimalDivide( result, baseValue, course, roundingMode );
+    //result = baseValue * course;
+    return result;
 }
 
 @end

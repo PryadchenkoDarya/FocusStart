@@ -9,6 +9,8 @@
 #import "CurrencyViewController.h"
 #import "ViewController.h"
 #import "CurrencyViewControllerDelegate.h"
+#import "CurrencyDatasource.h"
+
 
 @interface CurrencyViewController ()
 
@@ -17,26 +19,36 @@
 @implementation CurrencyViewController
 {
     IBOutlet UITableView * TableCurrency;
+    CurrencyDatasource * CurrencyDS;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- ( void )viewDidLoad
+{
+    [ super viewDidLoad ];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Select Currency";
+    CurrencyManager * CManager = [ [ CurrencyManager alloc ] init ];
+    CurrencyDS = [ [ CurrencyDatasource alloc ] initWithCurrencyManager:CManager ];
+    TableCurrency.dataSource = CurrencyDS;
+    TableCurrency.delegate = CurrencyDS;
     [self configureNavigateItem];
 }
 
--(void)configureNavigateItem{
-    UIBarButtonItem *doneButton=[[UIBarButtonItem alloc] initWithTitle: @"Ready" style:UIBarButtonItemStyleDone target:self action:@selector(doneTapped)];
+-( void )configureNavigateItem
+{
+    UIBarButtonItem *doneButton=[ [ UIBarButtonItem alloc ] initWithTitle: @"Ready" style:UIBarButtonItemStyleDone target:self action:@selector( doneTapped ) ];
     self.navigationItem.rightBarButtonItem = doneButton;
 }
 
--(void) doneTapped{
-    [self.delegate didSelectCurrency];
+-( void ) doneTapped
+{
+    [ CurrencyDS tableView:TableCurrency didSelectRowAtIndexPath:TableCurrency.indexPathForSelectedRow];
+    [ self.delegate didSelectCurrency:CurrencyDS.selectedCurrency ];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- ( void )didReceiveMemoryWarning
+{
+    [ super didReceiveMemoryWarning ];
     // Dispose of any resources that can be recreated.
 }
 

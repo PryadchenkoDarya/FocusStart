@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CurrencyViewControllerDelegate.h"
+#import "AppContext.h"
 
 @interface ViewController : UIViewController<CurrencyViewControllerDelegate>
 
+@property( nonatomic, strong, readonly ) AppContext *appContext;
+
+-( instancetype ) initWithAppContext:( AppContext *)anAppContext;
 
 @end
 

@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Currency.h"
 
-@protocol CurrencyViewControllerDelegate <NSObject>
+@protocol CurrencyViewControllerDelegate < NSObject >
 
--(void)didSelectCurrency;
+-( void )didSelectCurrency:( Currency *)currency;
 
 @end
